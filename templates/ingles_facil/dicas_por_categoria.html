@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo_head %}
+    {{ categoria.nome }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'ingles_facil:pagina_inicial' %}" class="voltar-link">&laquo; Voltar para todas as categorias</a>
+    <h1>Dicas sobre: {{ categoria.nome }}</h1>
+    <p>{{ categoria.descricao_breve }}</p>
+
+    {% if dicas %}
+        <ul class="lista-dicas detalhada">
+            {% for dica in dicas %}
+            <li>
+                <h2>{{ dica.titulo }}</h2>
+                <p class="conteudo-dica">{{ dica.conteudo|linebreaksbr }}</p> {# linebreaksbr converte quebras de linha em <br> #}
+                {% if dica.link_util %}
+                <div class="recurso-link" style="margin-top: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px; background-color: #fcfaff;">
+                    <p style="margin: 0; font-weight: bold; color: #333;">Recurso Externo:</p>
+                    <a href="{{ dica.link_util }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #660099; display: inline-block; margin-top: 10px;">
+                        
+                        {# Se você adicionou um logo, ele aparece aqui #}
+                        {% if dica.logo_recurso %}
+                            <img src="{{ dica.logo_recurso.url }}" alt="Logo de {{ dica.nome_recurso|default:'Recurso' }}" style="max-height: 40px; vertical-align: middle; margin-right: 10px;">
+                        {% endif %}
+             
+                        {# O texto do link usa o nome do recurso, se existir. Senão, usa a URL. #}
+                        <span style="vertical-align: middle; font-size: 1.1em; font-weight: bold;">
+                            {% if dica.nome_recurso %}
+                                {{ dica.nome_recurso }}
+                            {% else %}
+                                Acessar Recurso
+                            {% endif %}
+                        </span>
+                    </a>
+                </div>
+                {% endif %}
+                <small class="data-dica">Adicionada em: {{ dica.data_adicionada|date:"d/m/Y" }}</small> {# Formata a data #}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ainda não há dicas cadastradas para esta categoria.</p>
+    {% endif %}
+{% endblock %}

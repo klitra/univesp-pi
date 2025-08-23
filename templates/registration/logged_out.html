@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block titulo_head %}Logoff - {{ block.super }}{% endblock %}
+{% block content %}
+  <h2>Logoff</h2>
+  <p>Você foi desconectado com sucesso.</p>
+  <p><a href="{% url 'login' %}">Fazer login novamente</a> ou <a href="{% url 'ingles_facil:cadastro' %}">voltar para a página inicial</a>.</p>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %} {# Herda do base.html #}
+
+{% block titulo_head %} 
+    Página Inicial - {{ block.super }} {# Adiciona ao título do base #}
+{% endblock %}
+
+{% block content %} {# Preenche o bloco 'content' do base.html #}
+    <h1>{{ titulo_pagina }}</h1>
+    <p class="tagline">Seu guia para voos mais altos no inglês.</p>
+
+    <h2>Explore por Categoria:</h2>
+    <div class="categorias-grid">
+        {% for categoria in categorias %}
+            <a href="{% url 'ingles_facil:dicas_por_categoria' slug_categoria=categoria.slug %}" class="categoria-card" style="background-color: {{ categoria.cor_card }};">
+                <h3>{{ categoria.nome }}</h3>
+                <p>{{ categoria.descricao_breve|truncatewords:10 }}</p> {# truncatewords é um filtro de template #}
+            </a>
+        {% empty %}
+            <p>Nenhuma categoria de dica cadastrada ainda.</p>
+        {% endfor %}
+    </div>
+
+    {% if ultimas_dicas %}
+    <h2>Últimas Dicas Adicionadas:</h2>
+    <ul class="lista-dicas">
+        {% for dica in ultimas_dicas %}
+        <li>
+            <strong>{{ dica.titulo }}</strong> (em <a href="{% url 'ingles_facil:dicas_por_categoria' slug_categoria=dica.categoria.slug %}">{{ dica.categoria.nome }}</a>)
+            <p>{{ dica.conteudo|truncatewords:20 }}</p>
+            {% if dica.link_util %}<a href="{{ dica.link_util }}" target="_blank" class="link-externo">Saber mais</a>{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}

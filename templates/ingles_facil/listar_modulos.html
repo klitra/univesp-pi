@@ -1,0 +1,38 @@
+   {% extends "base.html" %}
+{% block titulo_head %}Módulos - {{ block.super }}{% endblock %}
+{% block content %}
+<h1>{{ titulo_pagina }}</h1>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<p>Seu total de pontos: <strong>{{ pontos_usuario }}</strong> | Sua Etapa Atual: <span class="etapa-badge">{{ etapa_usuario }}</span></p>
+
+<div class="modulos-container">
+    {% for item in modulos_com_status %}
+    <div class="modulo-card {% if not item.is_desbloqueado %}bloqueado{% endif %}">
+        <h2>{{ item.modulo.titulo }}</h2>
+        <p>{{ item.modulo.descricao|truncatewords:15 }}</p>
+
+        {% if item.is_desbloqueado %}
+            <p>Progresso: {{ item.tarefas_completas }} / {{ item.total_tarefas }} tarefas</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: {{ item.progresso_percentual|floatformat:0 }}%;">
+                    {{ item.progresso_percentual|floatformat:0 }}%
+                </div>
+            </div>
+            <a href="{% url 'ingles_facil:detalhe_modulo' slug_modulo=item.modulo.slug %}" class="btn-modulo">Acessar Módulo</a>
+        {% else %}
+            <p class="bloqueado-aviso">🔒 Bloqueado. Requer {{ item.modulo.pontos_para_desbloquear }} pontos para desbloquear.</p>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p>Nenhum módulo de aprendizado cadastrado ainda.</p>
+    {% endfor %}
+</div>
+{% endblock %}

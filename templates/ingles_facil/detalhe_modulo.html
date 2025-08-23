@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo_head %}{{ modulo.titulo }} - {{ block.super }}{% endblock %}
+{% block content %}
+<a href="{% url 'ingles_facil:listar_modulos' %}" class="voltar-link">&laquo; Voltar para Módulos</a>
+<h1>{{ modulo.titulo }}</h1>
+<p>{{ modulo.descricao }}</p>
+
+{% if messages %}
+ <ul class="messages">
+     {% for message in messages %}
+         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+     {% endfor %}
+ </ul>
+{% endif %}
+
+<ul class="lista-tarefas">
+ {% for tarefa in tarefas %}
+ <li class="tarefa-item {% if tarefa.id in tarefas_completadas_ids %}completada{% endif %}">
+     <h3>{{ tarefa.titulo }} ({{ tarefa.pontos_ao_completar }} pontos)</h3>
+     <p>{{ tarefa.conteudo_ou_pergunta|linebreaksbr }}</p>
+
+     {% if tarefa.id in tarefas_completadas_ids %}
+         <span class="status-completo">✔️ Concluída</span>
+     {% else %}
+         <form action="{% url 'ingles_facil:completar_tarefa' tarefa_id=tarefa.id %}" method="post" style="display: inline;">
+             {% csrf_token %}
+             <button type="submit" class="btn-completar">Marcar como Concluída</button>
+         </form>
+     {% endif %}
+ </li>
+ {% empty %}
+ <p>Nenhuma tarefa neste módulo ainda.</p>
+ {% endfor %}
+</ul>
+{% endblock %}

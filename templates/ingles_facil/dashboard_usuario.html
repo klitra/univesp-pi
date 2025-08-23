@@ -1,0 +1,15 @@
+   {% extends "base.html" %}
+{% block titulo_head %}Meu Progresso - {{ block.super }}{% endblock %}
+{% block content %}
+<h1>{{ titulo_pagina }}</h1>
+<div class="dashboard-info">
+    <p><strong>Usuário:</strong> {{ usuario.username }}</p>
+    <p><strong>Pontos Totais:</strong> <span class="pontos-destaque">{{ pontos_totais }}</span></p>
+    <p><strong>Tarefas Concluídas:</strong> {{ tarefas_completas_count }}</p>
+    <p><strong>Sua Etapa de Crescimento:</strong> <span class="etapa-badge">{{ etapa_crescimento }}</span></p>
+</div>
+<hr>
+<p><a href="{% url 'ingles_facil:listar_modulos' %}" class="btn-modulo">Continuar Aprendendo (Ver Módulos)</a></p>
+<p><a href="{% url 'ingles_facil:pagina_inicial' %}" class="btn-modulo">Ver Dicas Gerais</a></p>
+{% endblock %}
+

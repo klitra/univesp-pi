@@ -1,0 +1,206 @@
+/* Estilos para o Logo e o Texto "Owlstip" */
+/* MODIFICADO: Ajustado para usar o seletor mais específico 'header .logo' */
+header .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.8em;       /* Mantido seu tamanho de fonte original */
+    font-weight: bold;      /* Mantido seu negrito original */
+
+    /* NOVO: Adicionado display:flex para alinhar a imagem e o texto um ao lado do outro */
+    display: flex;
+    align-items: center;    /* Alinha verticalmente a imagem e o texto no centro */
+}
+
+/* MODIFICADO: Mantido seu tamanho e adicionado espaçamento */
+.logo img {
+    height: 60px;           /* Mantido o seu tamanho de 60px */
+    width: auto;
+    margin-right: 65px;     /* NOVO: Adiciona um espaço entre a imagem e o texto */
+}
+
+/* NOVO: Estilos específicos para o texto "Owlstip" dentro do logo */
+.logo span {
+    /* Herda a maioria dos estilos de 'header .logo', como cor e peso da fonte */
+    /* Você pode adicionar estilos específicos para o texto aqui se quiser */
+    font-size: 1em; /* 1em aqui significa que ele terá o mesmo tamanho de 'header .logo' (1.8em) */
+}
+
+
+/* --- SEU CÓDIGO CSS EXISTENTE (SEM ALTERAÇÕES) --- */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f8f5fc; /* Lilás bem clarinho */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* MODIFICAÇÃO SUTIL: Removi o .logo daqui pois ele já foi estilizado acima de forma mais completa */
+header {
+    background-color: #805097; /* Roxo Vivo */
+    color: white;
+    padding: 1em 0;
+    margin-bottom: 2em;
+}
+
+header nav {
+    display: flex;
+    align-items: center;          /* Alinha verticalmente no centro (ótimo!) */
+    justify-content: space-between; /* <-- A MÁGICA ACONTECE AQUI */
+    width: 100%;
+}
+
+.logo img {
+    height: 60px; /* Seu tamanho de logo */
+    margin-right: 15px;
+}
+
+.logo span {
+    font-size: 1.8em; /* Seu tamanho de fonte */
+    font-weight: bold;
+}
+.auth-links { list-style-type: none; padding: 0; margin: 0; display: flex; align-items: center;}
+.auth-links li { margin-left: 15px; }
+.auth-links li a { color: white; text-decoration: none; }
+.auth-links li a:hover { text-decoration: underline; }
+
+main h1, main h2 {
+    color: #4d0076; /* Tom de roxo mais escuro para títulos */
+}
+
+.tagline {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 1.5em;
+}
+
+.categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 2em;
+}
+
+.categoria-card {
+    display: block;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.categoria-card:hover {
+    transform: translateY(-5px);
+}
+
+.categoria-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.lista-dicas {
+    list-style-type: none;
+    padding: 0;
+}
+.lista-dicas li {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #8332a9; /* Lilás para destaque */
+}
+.lista-dicas.detalhada li {
+    border-left-color: #660099; /* Roxo mais forte para a página de categoria */
+    margin-bottom: 20px;
+}
+.lista-dicas .conteudo-dica {
+    margin: 10px 0;
+}
+.lista-dicas .data-dica {
+    font-size: 0.85em;
+    color: #777;
+}
+.link-externo {
+    display: inline-block;
+    background-color: #ff9900; /* Laranja Vivo (aproximado) */
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.link-externo:hover {
+    background-color: #e68a00;
+}
+
+.voltar-link {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    color: #660099;
+    text-decoration: none;
+}
+.voltar-link:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #72338f; /* Roxo mais escuro para o rodapé */
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+    margin-top: 3em;
+}
+
+/* ... (seu CSS existente) ... */
+
+/* Estilos para mensagens do Django */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0;
+}
+.messages li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: #fff;
+}
+.messages li.success { background-color: #4CAF50; }
+.messages li.info { background-color: #2196F3; }
+.messages li.warning { background-color: #ff9800; }
+.messages li.error { background-color: #f44336; }
+
+
+.modulos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+.modulo-card { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #660099; }
+.modulo-card.bloqueado { background-color: #f0f0f0; border-left-color: #ccc; color: #888; opacity: 0.7; }
+.modulo-card.bloqueado .btn-modulo { background-color: #aaa; cursor: not-allowed; }
+.modulo-card h2 { margin-top: 0; color: #4d0076; }
+.bloqueado-aviso { font-weight: bold; color: #777; font-size: 0.9em; }
+.btn-modulo, .btn-completar { display: inline-block; background-color: #660099; color: white !important; padding: 10px 15px; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; margin-top: 10px; font-size: 0.95em; }
+.btn-modulo:hover, .btn-completar:hover { background-color: #4d0076; }
+.btn-completar { background-color: #ff9900; } /* Laranja para completar */
+.btn-completar:hover { background-color: #e68a00; }
+
+.lista-tarefas { list-style-type: none; padding: 0; }
+.tarefa-item { background-color: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #eee; }
+.tarefa-item.completada { background-color: #e9ffe9; border-left: 5px solid #4CAF50; }
+.tarefa-item h3 { margin-top: 0; }
+.status-completo { color: #4CAF50; font-weight: bold; }
+
+.progress-bar-container { width: 100%; background-color: #e0e0e0; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.progress-bar { height: 20px; background-color: #4CAF50; color: white; text-align: center; line-height: 20px; font-size: 0.9em; transition: width 0.5s ease-in-out; }
+
+.dashboard-info p { font-size: 1.1em; margin-bottom: 0.8em; }
+.etapa-badge { background-color: #8332a9; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.9em; display: inline-block; }
+.pontos-destaque { font-weight: bold; font-size: 1.2em; color: #4d0076; }

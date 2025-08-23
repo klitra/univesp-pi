@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo_head %}Login - {{ block.super }}{% endblock %}
+{% block content %}
+  <h2>Login</h2>
+  {% if form.errors %}
+    <p style="color: red;">Seu nome de usuário e senha não correspondem. Tente novamente.</p>
+  {% endif %}
+  {% if user.is_authenticated %}
+    <p>Você já está logado como {{ user.username }}. <a href="{% url 'logout' %}">Sair?</a></p>
+  {% else %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form.as_p }} {# Renderiza os campos do formulário como parágrafos #}
+      <button type="submit">Login</button>
+      <input type="hidden" name="next" value="{% url 'ingles_facil:pagina_inicial' %}"> {# Redireciona após login, se aplicável #}
+    </form>
+    <p><a href="{% url 'ingles_facil:pagina_inicial' %}">Esqueceu a senha?</a></p>
+    <p>Não tem uma conta? <a href="{% url 'ingles_facil:cadastro' %}">Cadastre-se</a></p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static %} {# Carrega a tag static para arquivos CSS, JS, imagens #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo_head %}Owlstip{% endblock %}</title> {# Bloco para título específico da página #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {# Link para seu arquivo CSS #}
+    <link rel="icon" href="{% static 'favicon.png' %}" type="image/png">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="{% url 'ingles_facil:pagina_inicial' %}" class="logo">
+                <img src="{% static 'Owlstip.png' %}" alt="Logo Coisas de Coruja" style="height: 60px;">
+            </a>
+            <ul class="auth-links">
+                {% if user.is_authenticated %}
+                    <li>Olá, {{ user.username }}!</li>
+                    <li><a href="{% url 'ingles_facil:dashboard_usuario' %}">Meu Progresso</a></li>
+                    <li><a href="{% url 'login' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'ingles_facil:cadastro' %}">Cadastro</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} Vivo Owlstip - Conectando você com o aprendizado.</p>
+    </footer>
+</body>
+</html>
