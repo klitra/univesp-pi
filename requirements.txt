@@ -1,11 +1,21 @@
 # Framework Principal
+# Framework Principal
 Django==5.2.1
+
+# Servidor WSGI para produção
 
 # Servidor WSGI para produção
 gunicorn==23.0.0
 
 # Conexão com o banco de dados PostgreSQL (usado pela Render)
+
+# Conexão com o banco de dados PostgreSQL (usado pela Render)
 psycopg2-binary==2.9.10
+
+# Servir arquivos estáticos em produção
+whitenoise==6.9.0
+
+# Gerenciar variáveis de ambiente (do arquivo .env)
 
 # Servir arquivos estáticos em produção
 whitenoise==6.9.0
