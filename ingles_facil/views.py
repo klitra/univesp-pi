@@ -64,6 +64,7 @@ from django.contrib import messages # Para exibir mensagens ao usuário
 def listar_modulos(request):
     # Garante que o perfil exista ou cria um se necessário (robusto)
     perfil_usuario, created = UserProfile.objects.get_or_create(user=request.user)
+
     
     modulos = ModuloAprendizado.objects.all()
     modulos_com_status = []
