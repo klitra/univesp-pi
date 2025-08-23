@@ -22,3 +22,6 @@ pillow==11.2.1
 
 # Para fazer requisições a APIs externas (adicione se seu app precisar)
 # requests==2.31.0
+
+# Gerenciar variáveis de ambiente (do arquivo .env)
+python-dotenv==1.0.1
