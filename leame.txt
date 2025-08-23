@@ -3,6 +3,7 @@ vivodicas\venv\Scripts\activate
 env\Scripts\activate
 waitress-serve vivoidiomas.wsgi:application
 pip install --no-index --find-links=offline_packages -r requirements.txt
+pip install -r requirements.txt
 pip install django
 python manage.py runserver 0.0.0.0:8000
 10.128.18.137:8080

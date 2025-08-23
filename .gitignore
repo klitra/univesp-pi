@@ -1,0 +1,15 @@
+# Arquivo de variáveis de ambiente
+.env
+
+# Pasta de arquivos estáticos coletados pelo Django
+staticfiles/
+
+# Cache do Python
+__pycache__/
+
+# Banco de dados do SQLite (se estiver usando em desenvolvimento)
+db.sqlite3
+
+# Arquivos de IDEs
+.vscode/
+.idea/
