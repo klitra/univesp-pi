@@ -29,7 +29,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 
-ALLOWED_HOSTS = ['https://univesp-pi-27iv.onrender.com']
+ALLOWED_HOSTS = ['univesp-pi-27iv.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
