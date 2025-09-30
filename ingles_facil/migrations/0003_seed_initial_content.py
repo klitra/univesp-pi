@@ -6,10 +6,10 @@ from django.utils.text import slugify
 # Função para popular os dados
 def seed_data(apps, schema_editor):
     # Obtenha os modelos da versão histórica correta
-    CategoriaDica = apps.get_model('learning', 'CategoriaDica')
-    Dica = apps.get_model('learning', 'Dica')
-    ModuloAprendizado = apps.get_model('learning', 'ModuloAprendizado')
-    Tarefa = apps.get_model('learning', 'Tarefa')
+    CategoriaDica = apps.get_model('ingles_facil', 'CategoriaDica')
+    Dica = apps.get_model('ingles_facil', 'Dica')
+    ModuloAprendizado = apps.get_model('ingles_facil', 'ModuloAprendizado')
+    Tarefa = apps.get_model('ingles_facil', 'Tarefa')
  
     # --- CATEGORIAS DE DICAS E DICAS ---
  
