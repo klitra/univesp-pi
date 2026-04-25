@@ -4,13 +4,13 @@ Repositório da disciplina Projeto Integrador (PI) UNIVESP.
 
 ## Descrição
 
-Este projeto é uma aplicação completa desenvolvida principalmente em Python, integrando backend, frontend e persistência de dados. O objetivo do sistema é [DESCREVA O OBJETIVO DO SEU PROJETO, ex: gerenciar tarefas, centralizar informações acadêmicas etc.].
+Este projeto é uma aplicação completa desenvolvida principalmente em Python, integrando backend, frontend e persistência de dados. O objetivo do sistema é Democratizar o aprendizado dos idiomas nas escolas.
 
 A aplicação possui:
 
 - **Backend em Python**
 - **Frontend com HTML/CSS e JavaScript**
-- **Persistência de dados [escolha: por arquivos, SQLite, outro banco?]**
+- **Persistência de dados**
 - Scripts de automação para facilitar setup
 - Estrutura modular para fácil manutenção
 
