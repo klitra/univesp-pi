@@ -1,112 +1,136 @@
-# Projeto PI
+# Projeto PI – Owlstip
 
-Repositório da disciplina Projeto Integrador (PI) UNIVESP.
+Repositório do Projeto Integrador UNIVESP – Owlstip: sua plataforma web para alavancar o aprendizado de inglês de forma gamificada, moderna e acessível.
 
-## Descrição
+## Visão Geral
 
-Este projeto é uma aplicação completa desenvolvida principalmente em Python, integrando backend, frontend e persistência de dados. O objetivo do sistema é Democratizar o aprendizado dos idiomas nas escolas.
+Este projeto é uma aplicação web completa criada com Django, projetada para ser fácil de usar, acessível e escalável. O objetivo é disponibilizar um ambiente virtual de estudo de inglês, com:
 
-A aplicação possui:
+- sistema de dicas organizadas por categoria (apps, músicas, séries, etc.);
+- módulos de aprendizado e trilhas com tarefas;
+- progresso e gamificação (pontos, fases/crescimento de perfil do usuário);
+- interface web interativa, responsiva e amigável.
 
-- **Backend em Python**
-- **Frontend com HTML/CSS e JavaScript**
-- **Persistência de dados**
-- Scripts de automação para facilitar setup
-- Estrutura modular para fácil manutenção
+A solução cobre backend, frontend, banco de dados, autenticação, painel de administração, controle de progresso, experiência gamificada e está pronta para deploy em nuvem (compatibilidade especial com Render).
 
-## Estrutura do Projeto
+## Principais Funcionalidades
 
-```
-.
-├── pasta_backend/      # Código do backend (Python)
-├── pasta_frontend/     # Arquivos HTML, CSS, JS
-├── requirements.txt    # Dependências Python
-├── README.md           # Este manual
-└── ...                 # Outros arquivos/scripts
-```
-
-## Como rodar localmente
-
-### Pré-requisitos
-
-- Python 3.x instalado
-- (Opcional) Virtualenv para ambiente isolado
-
-### Passos
-
-1. **Clone o repositório**
-   ```sh
-   git clone https://github.com/klitra/univesp-pi.git
-   cd univesp-pi
-   ```
-
-2. **Crie e ative um ambiente virtual**
-   ```sh
-   python -m venv .venv
-   # No Linux/Mac:
-   source .venv/bin/activate
-   # No Windows:
-   .venv\Scripts\activate
-   ```
-
-3. **Instale as dependências**
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-4. **Configure as variáveis de ambiente (se necessário)**
-   - Crie um arquivo `.env` e adicione as variáveis conforme o exemplo (verifique se existe `.env.example`).
-
-5. **Inicialize o banco de dados**
-   ```
-   # Exemplo para Flask ou Django:
-   flask db upgrade
-   # ou
-   python manage.py migrate
-   # caso use SQLite e o banco seja criado automaticamente, pule este passo
-   ```
-
-6. **Rode o projeto**
-   ```sh
-   python app.py
-   # ou
-   flask run
-   # ou
-   python manage.py runserver
-   ```
-
-7. **Acesse no navegador**
-   - Abra `http://localhost:5000`, `http://127.0.0.1:8000` ou porta informada no terminal.
+- **Cadastro e Login de Usuários**: Controle de acessos seguro (usuário padrão do Django + perfis estendidos).
+- **Gamificação**: Perfil do usuário com conquistas, pontos e etapas de crescimento.
+- **Módulos e Tarefas de Aprendizagem**: Organização em trilhas progressivas; cada módulo com tarefas interativas.
+- **Sistema de Dicas**: Dicas categorizadas (ex: aplicativos, músicas, séries) com descrição detalhada, links e logos.
+- **Banco de Dados Integrado**: Pronto para SQLite (desenvolvimento) e PostgreSQL (produção/Render).
+- **Administração Completa**: Painel Django Admin para gestão de usuários, dicas, progresso, etc.
+- **Frontend Customizado**: Templates HTML, CSS moderno, responsivo, navegação amigável e layout visualmente atraente.
+- **Implantação Facilitada**: Compatível com Render, uso de Gunicorn e Whitenoise para produção e arquivos estáticos, variáveis de ambiente via .env.
 
 ---
 
-## Funcionalidades
+## Estrutura do Projeto (resumida)
 
-- [ ] Cadastro/Login de usuários
-- [ ] CRUD de entidades principais
-- [ ] Interface web
-- [ ] Integração com banco de dados
-- [ ] [Outras funções específicas do seu projeto]
-
-## Contribuição
-
-Sinta-se livre para abrir issues ou pull requests. Sugestões são bem-vindas!
+```
+/
+├── manage.py
+├── requirements.txt
+├── vivoidiomas/                  # Configurações e root do projeto Django
+│   ├── settings.py, urls.py, ...
+├── ingles_facil/                 # App principal: regras de negócio
+│   ├── models.py, views.py, ...
+├── templates/                    # HTML (base, páginas, etc.)
+├── static/                       # CSS, imgs, JS
+├── .env.example                  # Exemplo de configuração ambiente
+├── db.sqlite3                    # (Auto) Para rodar localmente
+```
 
 ---
 
-> _Ajuste nomes de arquivos, comandos e frameworks conforme seu projeto de fato._
+## Como Rodar Localmente
+
+### 1. Clonar o repositório
+```sh
+git clone https://github.com/klitra/univesp-pi.git
+cd univesp-pi
+```
+
+### 2. Criar ambiente virtual
+```sh
+python -m venv .venv
+# Linux/macOS:
+source .venv/bin/activate
+# Windows:
+.venv\Scripts\activate
+```
+
+### 3. Instalar dependências
+```sh
+pip install -r requirements.txt
+```
+
+### 4. Configurar variáveis de ambiente
+Crie um arquivo `.env` na raiz do projeto (baseie-se no `.env.example`, ou configure pelo menos as variáveis essenciais, como SECRET_KEY):
+
+```
+SECRET_KEY=suasupersecret
+DEBUG=True
+```
+*(na produção, defina DEBUG=False e configure o banco PostgreSQL; ambiente local funciona com o SQLite já configurado.)*
+
+### 5. Executar migrações e preparar banco
+```sh
+python manage.py migrate
+```
+
+### 6. (Opcional) Criar superusuário para acessar o admin
+```sh
+python manage.py createsuperuser
+```
+
+### 7. Rodar o servidor de desenvolvimento
+```sh
+python manage.py runserver
+```
+
+Acesse: http://127.0.0.1:8000
+
+---
+
+## Deploy em Produção
+
+- Para produção (exemplo: Render), configure variáveis de ambiente: ajuste `DEBUG`, chaves, banco PostgreSQL, e execute os comandos de collectstatic para arquivos estáticos:
+  ```sh
+  python manage.py collectstatic
+  ```
+
+- O projeto já inclui Gunicorn e Whitenoise para servir arquivos estáticos corretamente em ambiente de produção.
+
+---
+
+## Créditos, Licença e Colaboradores
+
+Este projeto é de uso acadêmico, mas pode servir como base para aplicativos de ensino/aprendizado de idiomas. Fique à vontade para abrir issues, sugerir melhorias ou enviar pull requests!
+
+> **Equipe:** jduarte95 e colaboradores UNIVESP <!-- (alterar/expandir conforme necessário) -->
+
+---
 
 
-Integrantes
+## Exemplos de Recursos
 
-Carlos Eduardo Sousa Rodrigues, 2206894  
-Aldalis Ferreira França Gomes, 23207804  
-Carlos Gomes de Oliveira, 2108356  
-Marcelo Yoshio Yasuoka Sasahara, 23220281  
-Kleber Gonçalves, 2101919  
-Marco Aurélio Santos de Moura, 2224178  
-Julio Cesar Ribeiro Duarte, 23218534  
-Karen Lais Novais Cruz - 23202803
+### Perfis do Usuário
+Os usuários avançam de "Novato Curioso" até "Mestre do Idioma", acumulando pontos ao completar tarefas.
 
+### Trilhas e Módulos
+Cada trilha libera módulos progressivos, incentivando o estudo contínuo e focado.
 
+### Dicas Interativas
+Dicas personalizadas para apps, vídeos, músicas, sites e outros recursos, tudo categorizado e com link útil.
 
+---
+
+## FAQ Rápido
+
+- **Qual o banco local?** Por padrão é SQLite (`db.sqlite3` já pronto após as migrações).
+- **Posso usar PostgreSQL?** Sim, basta alterar o `DATABASES` no `.env` ou overriding via settings.
+- **Suporta deploy em nuvem?** Sim, pronto para Render.com, Heroku, Azure, etc.
+
+---
